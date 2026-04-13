@@ -1,0 +1,96 @@
+#comments {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 96vw;
+}
+
+#comments > a {
+    text-align: right;
+    color: #057e21;
+}
+
+.comentcontainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(6, 98%);
+    gap: 10%;
+    padding: 0.6rem;
+    margin-left: 0.3rem;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.coment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 18vh;
+    padding: 0 5%;
+    border-radius: 0.4em;
+    box-shadow: 0.8px 0px 2px #333;
+    scroll-snap-align: center;
+    font-size: 0.85rem;
+    background: var(--color-fondo);
+    color: var(--color-secundario);
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile * {
+    margin: 0.3rem 0;
+}
+
+.comentcontent {
+    text-align: justify;
+}
+
+.val {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-end;
+    gap: 0.5rem;
+}
+
+.valnumber {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    font-style: italic;
+    z-index: 3;
+}
+
+.valstar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    z-index: 3;
+}
+
+.star {
+    width: 1rem;
+    height: 1rem;
+    background: #aaa;
+    clip-path: polygon(
+        50% 0%,
+        64.7% 29.77%,
+        97.55% 34.55%,
+        73.78% 57.73%,
+        79.39% 90.45%,
+        50% 75%,
+        20.61% 90.45%,
+        26.22% 57.73%,
+        2.45% 34.55%,
+        35.3% 29.77%
+    );
+}
+.filled {
+    background: gold;
+}
+/* OJO: seccion comments no terminada*/

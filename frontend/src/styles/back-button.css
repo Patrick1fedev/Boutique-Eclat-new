@@ -1,0 +1,23 @@
+#backbutton{
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    background: none;
+    border: none;
+    position: fixed;
+    top: 4%;
+    left: 4%;
+}
+.backline{
+    width: 1.4rem;
+    height: .2rem;
+    background-color: var(--color-primario);
+}
+.backline:nth-child(1){
+    transform: rotate(-45deg) translate(-4px, -2px);
+    width: 1rem;
+}
+.backline:nth-child(3){
+    transform: rotate(45deg) translate(-4px, 2px);
+    width: 1rem;
+}

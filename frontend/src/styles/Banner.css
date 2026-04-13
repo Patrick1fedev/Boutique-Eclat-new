@@ -1,0 +1,29 @@
+#banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-terciario);
+    border-radius: 8px;
+    width: 96%;
+    padding: 1rem;
+}
+
+h3{
+    margin: 0;
+}
+
+.banner-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--color-secundario);
+}
+
+.banner-content img{
+    width: 5rem;
+    height: 5rem;
+}

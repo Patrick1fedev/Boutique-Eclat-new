@@ -1,0 +1,97 @@
+.sells {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    width: 96vw;
+}
+
+.sells span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img {
+    box-sizing: content-box;
+    position: relative;
+    padding: 0.4rem;
+    border-radius: 50%;
+}
+
+.img,
+.img img {
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.img img {
+    z-index: 2;
+}
+
+.img::before {
+    content: "";
+    position: absolute;
+    top: -4%;
+    left: -4%;
+    width: 100%;
+    height: 100%;
+    background: #06cc5d;
+    padding: 0.1rem;
+    clip-path: polygon(
+        100% 50%,
+        /* Punto 1: θ = 0°, r = 50 */ 92.8% 63.91%,
+        /* Punto 2: θ = 18°, r = 45 */ 90.45% 79.39%,
+        /* Punto 3: θ = 36°, r = 50 */ 76.45% 86.41%,
+        /* Punto 4: θ = 54°, r = 45 */ 65.45% 97.55%,
+        /* Punto 5: θ = 72°, r = 50 */ 50% 95%,
+        /* Punto 6: θ = 90°, r = 45 */ 34.55% 97.55%,
+        /* Punto 7: θ = 108°, r = 50 */ 23.55% 86.41%,
+        /* Punto 8: θ = 126°, r = 45 */ 9.55% 79.39%,
+        /* Punto 9: θ = 144°, r = 50 */ 7.2% 63.91%,
+        /* Punto 10: θ = 162°, r = 45 */ 0% 50%,
+        /* Punto 11: θ = 180°, r = 50 */ 7.2% 36.09%,
+        /* Punto 12: θ = 198°, r = 45 */ 9.55% 20.61%,
+        /* Punto 13: θ = 216°, r = 50 */ 23.55% 13.59%,
+        /* Punto 14: θ = 234°, r = 45 */ 34.55% 2.45%,
+        /* Punto 15: θ = 252°, r = 50 */ 50% 5%,
+        /* Punto 16: θ = 270°, r = 45 */ 65.45% 2.45%,
+        /* Punto 17: θ = 288°, r = 50 */ 76.45% 13.59%,
+        /* Punto 18: θ = 306°, r = 45 */ 90.45% 20.61%,
+        /* Punto 19: θ = 324°, r = 50 */ 92.8% 36.09% /* Punto 20: θ = 342°, r = 45 */
+    );
+}
+
+.img:hover::before {
+    transform: rotate(180deg) scale(1.1);
+    transition: 0.2s;
+}
+
+.sells p {
+    display: none;
+    padding: 0.3rem;
+    color: var(--color-terciario);
+    background: #2d2622;
+    border-radius: 0.3rem;
+    font-size: 0.7rem;
+    transition-delay: 0.1s;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.sells span:hover {
+    max-height: 4.2rem;
+}
+
+.sells span:hover > p {
+    display: inline-block;
+    animation: fade 0.4s linear;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

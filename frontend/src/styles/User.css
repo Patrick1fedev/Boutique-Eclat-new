@@ -1,0 +1,105 @@
+.user {
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: 0 -25% !important;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.8rem;
+    color: var(--color-cuaternario);
+    z-index: 2;
+    box-shadow: 0 0 10px 2px #333;
+    animation: fade-in1 1s;
+    margin: auto;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+}
+
+.user-info>h4 {
+    margin-top: .5rem;
+}
+
+.user-info ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.userImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-fondo);
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    border: 2px solid var(--color-cuaternario);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.userImage img {
+    width: 6rem;
+    height: 6rem;
+}
+
+.profileContainer{
+    display: flex;
+    flex-direction: column;
+}
+.profileContainer label{
+    display: inline-block;
+    font-size: .83rem;
+    text-align: center;
+}
+#imageTools{
+    transition: 0.3s;
+}
+#filePicker {
+    display: none;
+}
+
+hr {
+    width: 100%;
+    height: .7px;
+    background: var(--color-terciario);
+    border: none;
+}
+
+.userBtns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 1.5rem;
+    column-gap: 1rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.userBtn {
+    background: none;
+    color: var(--color-cuaternario);
+    font-weight: bold;
+    width: 7rem;
+    padding: .3rem 0;
+    border: .5px solid var(--color-cuaternario);
+    border-radius: 8px;
+}
+
+.userBtn:hover {
+    background: var(--color-cuaternario);
+    color: var(--color-fondo);
+    border: none;
+}
+
+.userBtn:active {
+    transform: scale(.8);
+}

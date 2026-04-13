@@ -1,0 +1,10 @@
+.main {
+    display: grid;
+    align-items: center;
+    grid-template-rows: auto;
+    gap: 4vh;
+    width: 100vw;
+    justify-items: center;
+    min-height: 70vh;
+    animation: fade-in1 .8s;
+  }

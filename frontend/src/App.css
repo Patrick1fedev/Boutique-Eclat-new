@@ -1,0 +1,23 @@
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 2vh;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-width: 100vw;
+  margin: 0;
+}
+
+@keyframes fade-in1 {
+  from{
+      opacity: 0;
+      transform: scale(.95);
+  }
+  to{
+      opacity: 1;
+      transform: scale(1);
+  }
+}
