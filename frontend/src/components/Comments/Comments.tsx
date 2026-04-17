@@ -1,8 +1,18 @@
 import '../../styles/Comments.css'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+type Comment = {
+    name: string;
+    coment: string;
+    rate: string;
+    profile: string;
+    alt: string;
+}
 
 const Comments = () => {
 
-    const coments = [
+    /* const coments = [
         {
             name: "John Doe",
             coment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, dolores, illum?",
@@ -45,7 +55,26 @@ const Comments = () => {
             profile: "#",
             alt: "Franc3rd"
         }
-    ];
+    ]; */
+
+    const [coments, setComents] = useState<Comment[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get('http://127.0.0.1:8089/popular_comments');
+                setComents(response.data);
+            } catch (error) {
+                console.error('Error fetching comments:', error);
+            }finally {
+                setLoading(false);
+            }
+        };
+
+        fetchComments();
+    }, []);
 
     const renderStars = (rate: string) => {
         const numericRate = parseFloat(rate);
@@ -72,25 +101,32 @@ const Comments = () => {
 
     return (
         <section id="comments">
-            <div className="comentcontainer">{
-                coments.map((coment, i) => {
-                    return (
-                        <div className="coment" key={i}>
-                            <div className="profile">
-                                <img src={coment.profile} alt={coment.alt} />
-                                <h3>{coment.name}</h3>
-                            </div>
-                            <div className="comentcontent">{coment.coment}</div>
-                            <div className="val">
-                                <span className="valnumber">{coment.rate}/5.0</span>
-                                <div className="valstar">
-                                    {renderStars(coment.rate)}
+            {loading ? <p>Loading...</p> : (
+                <>
+                    <h2 id="commentstitle"><i>Comentarios populares</i></h2>
+                    <div id="commentscontainer">
+                        {coments.length > 0 ? (
+                            coments.map((coment, i) => (
+                            <div className="coment" key={i}>
+                                <div className="profile">
+                                    <img src={coment.profile} alt={coment.alt} />
+                                    <h3>{coment.name}</h3>
+                                </div>
+                                <div className="comentcontent">{coment.coment}</div>
+                                <div className="val">
+                                    <span className="valnumber">{coment.rate}/5.0</span>
+                                    <div className="valstar">
+                                        {renderStars(coment.rate)}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })
-            }</div>
+                            ))
+                        ) : (
+                            <p>No comments available</p>
+                        )}
+                    </div>
+                </>
+            )}
             {/*<a href="#"><b>Ver todos los comentarios...</b></a>*/}
         </section>
     )

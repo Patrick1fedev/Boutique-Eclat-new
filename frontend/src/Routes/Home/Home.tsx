@@ -10,8 +10,8 @@ import boutiqueMinimal from '../../assets/icons/boutique-minimal.png';
 import { useProducts } from '../../Context/ProductsContext.tsx';
 
 const Home = () => {
-  const {sampleProducts, getRandomProducts} = useProducts();
-  const ratedProducts = getRandomProducts(sampleProducts);
+  const {products, getRandomProducts} = useProducts();
+  const ratedProducts = getRandomProducts(products);
 
   return (
     <div className='main'>

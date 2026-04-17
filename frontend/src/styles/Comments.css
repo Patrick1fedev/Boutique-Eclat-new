@@ -10,7 +10,16 @@
     color: #057e21;
 }
 
-.comentcontainer {
+#commentstitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    margin-left: 11% !important;
+    margin-bottom: 0.3rem;
+    
+}
+
+#commentscontainer {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(6, 98%);

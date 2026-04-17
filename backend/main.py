@@ -1,8 +1,23 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import uvicorn
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 app = FastAPI(title="Booutique_eclat_API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "utils" / "static")), name="static")
+
 
 @app.get("/")
 def getHome():
@@ -10,19 +25,22 @@ def getHome():
 
 @app.get("/products")
 def getAllProducts():
-    return [{ "id": 1, "src": '../assets/Images/df4629d5a458e3c6c456a49cb707f671.jpg', "description": "Producto 1", "price": 53.45, "for":'woman'},
-        { "id": 2, "src":'../assets/Images/IMG_0237.jpg', "description": "Producto 2", "price": 82.77, "for":'man'},
-        { "id": 3, "src":'../assets/Images/IMG_0251.jpg', "description": "Producto 3", "price": 79.39, "for":'man'},
-        { "id": 4, "src":'../assets/Images/IMG_0443.jpg', "description": "Producto 4", "price": 45.49, "for":'accesories'},
-        { "id": 5, "src":'../assets/Images/IMG_0415.jpg', "description": "Producto 5", "price": 65.79, "for":'man'},
-        { "id": 6, "src":'../assets/Images/IMG_0445.jpg', "description": "Producto 6", "price": 88.98, "for":'woman'},
-        { "id": 7, "src":'../assets/Images/IMG_0447.jpg', "description": "Producto 7", "price": 55.49, "for":'man'},
-        { "id": 8, "src":'../assets/Images/IMG_0241.jpg', "description": "Producto 8", "price": 88.40, "for":'man'},
-        { "id": 9, "src":'../assets/Images/IMG_0446.jpg', "description": "Producto 9", "price": 67.99, "for":'woman'},
-        { "id": 10, "src":'../assets/Images/IMG_0244.jpg', "description": "Producto 10", "price": 39.59, "for":'man'},
-        { "id": 11, "src":'../assets/Images/IMG_0442.jpg', "description": "Producto 11", "price": 49.95, "for":'accesories'},
-        { "id": 12, "src":'../assets/Images/IMG_0237.jpg', "description": "Producto 12", "price": 49.99, "for":'man'},]
     
+    base_url = "http://127.0.0.1:8089/static"
+    
+    return [{ "id": 1, "src": f"{base_url}/Images/df4629d5a458e3c6c456a49cb707f671.jpg", "description": "Producto 1", "price": 53.45, "for":'woman'},
+        { "id": 2, "src": f"{base_url}/Images/IMG_0237.jpg", "description": "Producto 2", "price": 82.77, "for":'man'},
+        { "id": 3, "src": f"{base_url}/Images/IMG_0251.jpg", "description": "Producto 3", "price": 79.39, "for":'man'},
+        { "id": 4, "src": f"{base_url}/Images/IMG_0443.jpg", "description": "Producto 4", "price": 45.49, "for":'accesories'},
+        { "id": 5, "src": f"{base_url}/Images/IMG_0415.jpg", "description": "Producto 5", "price": 65.79, "for":'man'},
+        { "id": 6, "src": f"{base_url}/Images/IMG_0445.jpg", "description": "Producto 6", "price": 88.98, "for":'woman'},
+        { "id": 7, "src": f"{base_url}/Images/IMG_0447.jpg", "description": "Producto 7", "price": 55.49, "for":'man'},
+        { "id": 8, "src": f"{base_url}/Images/IMG_0241.jpg", "description": "Producto 8", "price": 88.40, "for":'man'},
+        { "id": 9, "src": f"{base_url}/Images/IMG_0446.jpg", "description": "Producto 9", "price": 67.99, "for":'woman'},
+        { "id": 10, "src": f"{base_url}/Images/IMG_0244.jpg", "description": "Producto 10", "price": 39.59, "for":'man'},
+        { "id": 11, "src": f"{base_url}/Images/IMG_0442.jpg", "description": "Producto 11", "price": 49.95, "for":'accesories'},
+        { "id": 12, "src": f"{base_url}/Images/IMG_0239.jpg", "description": "Producto 12", "price": 49.99, "for": 'man'},]
+
 @app.get("/popular_comments")
 def getPopularoments():
     return[{
