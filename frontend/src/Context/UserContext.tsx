@@ -71,7 +71,6 @@ export function UserProvider({ children }: UserProviderProps) {
       setUser(null);
     };
 
-    // ✅ Añadido: actualizar imagen de perfil
     const updateProfilePic = (base64Image: string): void => {
       if (!user) return;
 
@@ -86,7 +85,6 @@ export function UserProvider({ children }: UserProviderProps) {
       localStorage.setItem('currentUser', JSON.stringify(updatedUser));
     };
 
-    // ✅ Añadido: eliminar imagen de perfil
     const removeProfilePic = (): void => {
       if (!user || !user.profilePic) return;
 
