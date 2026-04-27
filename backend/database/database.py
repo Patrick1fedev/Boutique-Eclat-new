@@ -1,7 +1,8 @@
 import sqlite3
 from pathlib import Path
 from contextlib import contextmanager
-
+from ..schemas.schemasProductos import ProductoCreate, ProductoUpdate
+from ..schemas.schemaOfId import Id
 
 class DbManager:
     def __init__(self, db_path = None):
@@ -64,3 +65,70 @@ class DbManager:
                            )
                            """)
             conn.commit()
+
+
+#CRUD
+
+#productos
+
+    def createProduct(self, producto: ProductoCreate):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "insert into productos (src, name, description, price, forr, quantity) values(?,?,?,?,?,?)" (producto)
+                )
+            conn.commit()
+            return cursor.lastrowid
+
+    def getSampleProducts(self):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            
+            cursor.execute(
+                "select * from productos order by id limit 12"
+            )
+            return [dict(row) for row in cursor.fetchall()]
+
+    def getAllProducts(self):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "select * from productos"
+            )
+            return [dict(row) for row in cursor.fetchall()]
+
+    def getAviableProducts(self):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "select * from productos where quantity > 0"
+            )
+            return [dict(row) for row in cursor.fetchall()]
+
+    def updateProductQuantity(self, updateOfProducto: ProductoUpdate, idProducto: Id):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "update productos set quantity = ? where id = ?" (updateOfProducto, idProducto)
+            )
+            conn.commit()
+            return cursor.rowcount > 0
+
+    def updateProductPrice(self, updateOfProducto: ProductoUpdate, idProducto: Id):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "update productos set price = ? where id = ?"(updateOfProducto, idProducto)
+                )
+            conn.commit()
+            return cursor.rowcount > 0
+
+    def deleteProduct(self, idProducto: Id):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "delete from productos where id = ?"(idProducto)
+            )
+            conn.commit()
+            
+            return cursor.rowcount > 0

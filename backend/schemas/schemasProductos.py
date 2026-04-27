@@ -8,7 +8,7 @@ class ProductoBase(BaseModel):
     price: float = Field(..., ge=0)
     forr: str = Field(..., min_length=1)
     quantity: int = Field(..., ge=0)
-    
+
 class ProductoCreate(ProductoBase):
     pass
 
@@ -19,7 +19,7 @@ class ProductoUpdate(BaseModel):
     price: Optional[float] = Field(default=None, ge=0)
     forr: Optional[str] = Field(default=None, min_length=1)
     quantity: Optional[int] = Field(default=None, ge=0)
-    
+
 class ProductoResponse(ProductoBase):
     id: int = Field(..., ge=1)
     
