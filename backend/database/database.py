@@ -2,7 +2,8 @@ import sqlite3
 from pathlib import Path
 from contextlib import contextmanager
 from ..schemas.schemasProductos import ProductoCreate, ProductoUpdate
-from ..schemas.schemaOfId import Id
+from ..schemas.schemasUsuarios import UsuarioCreate, UsuarioUpdate
+from ..schemas.schemaOfId import Id, Email
 
 class DbManager:
     def __init__(self, db_path = None):
@@ -44,7 +45,7 @@ class DbManager:
             cursor.execute("""
                            create table if not exists usuarios (
                                id integer primary key autoincrement,
-                               name text not null,
+                               name text unique not null,
                                email text unique not null,
                                password text unique not null,
                            )
@@ -132,3 +133,21 @@ class DbManager:
             conn.commit()
             
             return cursor.rowcount > 0
+
+    #Usuarios
+
+    def createUser(self, nuevoUsuario: UsuarioCreate):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("insert into usuarios(name, email, password) values (?,?,?)"(UsuarioCreate))
+            conn.commit()
+
+            return cursor.lastrowid
+        
+    def getUserByEmail(self, email: Email):
+        with self.getConnection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "select * from usuarios where email = ?" (email)
+                )
+            return [{row} for row in cursor.fetchall()]
